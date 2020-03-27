@@ -1,0 +1,35 @@
+﻿body {
+}
+
+.my-events {
+    background: #ECEBBD;
+    -ms-border-radius: 20px;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.event-item {
+    margin: 10px;
+    background: #F8F6F2;
+    -ms-border-radius: 20px;
+    border-radius: 20px;
+    padding: 25px;
+}
+.available-events {
+    background: #905D5D;
+    -ms-border-radius: 20px;
+    border-radius: 20px;
+    padding: 25px;
+}
+.participating-event {
+    background: #657F4B;
+    -ms-border-radius: 20px;
+    border-radius: 20px;
+    padding: 25px;
+}
+.free {
+    color: #FFFFFF;
+    padding: 5px;
+    background: #FF2400;
+    
+}

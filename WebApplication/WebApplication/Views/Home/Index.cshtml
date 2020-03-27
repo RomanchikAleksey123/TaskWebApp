@@ -1,0 +1,99 @@
+﻿@using System.Net.Http
+@model WebApplication.ViewModels.HomeViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<p>
+    <a href="~/Event/Add">Создать новое мероприятие</a>
+</p>
+<div>
+    <h4>Мои события:</h4>
+    <div class="my-events">
+        @foreach (var item in Model.MyEvents)
+        {
+        <div class="event-item">
+            <h6>@item.Tittle</h6>
+            <p>
+                Тема : @item.Topic
+                Описание события: @item.Description
+                Адрес : @item.Address
+                Дата и времы : @item.Date
+            </p>
+            <p>
+                <h6>Создатель события</h6>
+                @item.Organizer.User.Name @item.Organizer.User.Surname
+            </p>
+            <p>
+
+                <h>Контактная информация:</h>
+                @item.Organizer.User.Email <br />
+                @item.Organizer.User.PhoneNumber
+            </p>
+            <p> <a href="~/Event/Delete?eventId={@item.Id}">Удалить</a></p>
+            <p> <a href="~/Event/Edit?id={@item.Id}">Изменить</a></p>
+            <p>
+                Свободно мест : @item.GetNumberAvailableApplications()
+            </p>
+        </div>
+        }
+    </div>
+    <h4>Доступные события:</h4>
+    <div class="available-events">
+        @foreach (var item in Model.Events)
+        {
+            <div class="event-item">
+                <h6>@item.Tittle</h6>
+                <p>
+                    Тема : @item.Topic
+                    Описание события: @item.Description
+                    Адрес : @item.Address
+                    Дата и времы : @item.Date
+                </p>
+                <p>
+                    <h6>Создатель события</h6>
+                     @item.Organizer.User.Name @item.Organizer.User.Surname
+                </p>
+                <p>
+                    <h>Контактная информация:</h>
+                    @item.Organizer.User.Email <br />
+                    @item.Organizer.User.PhoneNumber
+                </p>
+                <p>
+                    <span class="free">Свободно мест : @item.GetNumberAvailableApplications()</span>
+                </p>
+                @if (item.CanEnter())
+                {
+                    <p><a href="~/Event/Participate?eventId=@item.Id">Участвовать</a></p>
+                }
+            </div>
+        }
+    </div>
+    <h4>Я участвую :</h4>
+    <div class="participating-event">
+        @foreach (var item in Model.EventsWhichIParticipate)
+        {
+        <div class="event-item">
+            <h6>@item.Tittle</h6>
+            <p>
+                Тема : @item.Topic
+                Описание события: @item.Description
+                Адрес : @item.Address
+                Дата и времы : @item.Date
+            </p>
+            <p>
+                <h6>Создатель события</h6>
+                @item.Organizer.User.Name @item.Organizer.User.Surname
+            </p>
+            <p>
+                <h>Контактная информация:</h>
+                @item.Organizer.User.Email <br />
+                @item.Organizer.User.PhoneNumber
+            </p>
+            <p><a href="~/Event/ExitEvent?eventId=@item.Id">Покинуть событие</a></p>
+        </div>
+        }
+    </div>
+</div>
